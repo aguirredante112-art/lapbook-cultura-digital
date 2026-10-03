@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tecnología al Descubierto — Lapbook Digital Interactivo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- CONTENEDOR PRINCIPAL DEL LAPBOOK -->
+  <div class="lapbook-viewport">
+
+    <!-- PORTADA TIPO CARPETA/LAPBOOK CERRADO -->
+    <div id="cover" class="cover-overlay active">
+      <div class="cover-card">
+        <div class="f1-badge">CETIS 1 P.M. — MATUTINO</div>
+        <div class="telemetry-bar">
+          <span class="dot red"></span>
+          <span class="dot gray"></span>
+          <span class="dot gray"></span>
+          <span class="mono-tag">CHASSIS: AGR-24 // SYSTEM ACTIVE</span>
+        </div>
+        <h1 id="cover-title" class="f1-title">TECNOLOGÍA AL DESCUBIERTO</h1>
+        <h2 id="cover-subtitle" class="f1-subtitle">LAPBOOK DIGITAL INTERACTIVO — CULTURA DIGITAL</h2>
+
+        <div class="cover-details">
+          <div class="detail-item">
+            <span class="label">ALUMNO:</span>
+            <span id="cover-student" class="value highlight">AGUIRRE MARTÍNEZ DANTE SEBASTIÁN</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">DOCENTE:</span>
+            <span id="cover-teacher" class="value">Calixto González Roxana Ivette</span>
+          </div>
+          <div class="detail-item-inline">
+            <div><span class="label">GRUPO:</span> <span id="cover-group" class="value">1 P.M.</span></div>
+            <div><span class="label">TURNO:</span> <span id="cover-shift" class="value">MATUTINO</span></div>
+          </div>
+        </div>
+
+        <div class="cover-image-container">
+          <img src="images/portada.jpg" alt="Portada Lapbook" class="fallback-img" data-img-id="portada" onerror="handleImageError(this, 'PORTADA GENERAL')">
+        </div>
+
+        <button id="btn-open-lapbook" class="btn-f1-start">
+          <span class="btn-text">ABRIR LAPBOOK DIGITAL</span>
+          <span class="btn-icon">➔</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ESTRUCTURA INTERIOR DEL LAPBOOK (CUERPO PRINCIPAL) -->
+    <main id="lapbook-main" class="lapbook-board hidden">
+      
+      <!-- ENCABEZADO TIPO TABLERO TÉCNICO -->
+      <header class="lapbook-header">
+        <div class="header-branding">
+          <div class="driver-num">24</div>
+          <div>
+            <h1 id="hdr-title">TECNOLOGÍA AL DESCUBIERTO</h1>
+            <p id="hdr-student">AGUIRRE MARTÍNEZ DANTE SEBASTIÁN | CULTURA DIGITAL</p>
+          </div>
+        </div>
+
+        <!-- NAVEGACIÓN POR PESTAÑAS (TABS DE PAPER/CARTULINA) -->
+        <nav class="lapbook-tabs">
+          <button class="tab-btn active" data-tab="tab-inicio">INICIO</button>
+          <button class="tab-btn" data-tab="tab-codigo-abierto">CÓDIGO ABIERTO</button>
+          <button class="tab-btn" data-tab="tab-propietario">PROPIETARIO</button>
+          <button class="tab-btn" data-tab="tab-tipos">TIPOS DE SOFTWARE</button>
+          <button class="tab-btn" data-tab="tab-seguridad">SEGURIDAD</button>
+          <button class="tab-btn" data-tab="tab-timeline">LÍNEA DEL TIEMPO</button>
+        </nav>
+      </header>
+
+      <!-- SECCIONES / SOLAPAS DEL LAPBOOK -->
+      <div class="lapbook-content">
+
+        <!-- TAB INICIO / VISIÓN GENERAL -->
+        <section id="tab-inicio" class="tab-pane active">
+          <div class="paper-pocket-card">
+            <div class="pocket-header">
+              <h2>BIENVENIDO AL LAPBOOK DIGITAL INTERACTIVO</h2>
+              <span class="badge">CULTURA DIGITAL</span>
+            </div>
+            <div class="pocket-body grid-2col">
+              <div>
+                <p class="intro-text">
+                  Este trabajo presenta el análisis detallado de la clasificación del software, los sistemas de seguridad digital y la línea del tiempo con los 10 inventos tecnológicos más importantes de la historia humana.
+                </p>
+                <div class="meta-box">
+                  <p><strong>Docente:</strong> <span id="init-teacher">Calixto González Roxana Ivette</span></p>
+                  <p><strong>Alumno:</strong> <span id="init-student">AGUIRRE MARTÍNEZ DANTE SEBASTIÁN</span></p>
+                  <p><strong>Especialidad/Grupo:</strong> <span id="init-group">1 P.M. — Matutino</span></p>
+                </div>
+              </div>
+              <div class="pocket-image-slot">
+                <img src="images/portada.jpg" alt="Vista General" data-img-id="portada" onerror="handleImageError(this, 'VISUAL CULTURA DIGITAL')">
+              </div>
+            </div>
+            <div class="quick-nav-pills">
+              <span>EXPLORA MEDIANTE LAS PESTAÑAS SUPERIORES O HAZ CLIC EN CUALQUIERA DE LOS ELEMENTOS INTERACTIVOS</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB CÓDIGO ABIERTO -->
+        <section id="tab-codigo-abierto" class="tab-pane">
+          <div class="lapbook-section-header">
+            <h2>SOFTWARE DE CÓDIGO ABIERTO (OPEN SOURCE)</h2>
+            <p>Interacción: Haz clic en las solapas de papel para desplegar cada apartado académico.</p>
+          </div>
+
+          <div class="open-source-grid">
+            <!-- SOLAPA 1: QUE ES -->
+            <div class="paper-flap" onclick="toggleFlap(this)">
+              <div class="flap-cover">
+                <h3>¿Qué es el Código Abierto?</h3>
+                <span class="flap-arrow">▼ DESPLEGAR</span>
+              </div>
+              <div class="flap-content">
+                <p id="ca-que-es"></p>
+                <div class="img-slot">
+                  <img src="images/codigo-abierto.jpg" data-img-id="codigo-abierto" onerror="handleImageError(this, 'CÓDIGO ABIERTO')">
+                </div>
+              </div>
+            </div>
+
+            <!-- SOLAPA 2: CARACTERISTICAS -->
+            <div class="paper-flap" onclick="toggleFlap(this)">
+              <div class="flap-cover">
+                <h3>Características Principales</h3>
+                <span class="flap-arrow">▼ DESPLEGAR</span>
+              </div>
+              <div class="flap-content">
+                <ul id="ca-caracteristicas"></ul>
+              </div>
+            </div>
+
+            <!-- SOLAPA 3: VENTAJAS -->
+            <div class="paper-flap" onclick="toggleFlap(this)">
+              <div class="flap-cover">
+                <h3>Ventajas Clave</h3>
+                <span class="flap-arrow">▼ DESPLEGAR</span>
+              </div>
+              <div class="flap-content">
+                <ul id="ca-ventajas"></ul>
+              </div>
+            </div>
+
+            <!-- SOLAPA 4: EJEMPLOS E IMPORTANCIA -->
+            <div class="paper-flap" onclick="toggleFlap(this)">
+              <div class="flap-cover">
+                <h3>Ejemplos e Importancia</h3>
+                <span class="flap-arrow">▼ DESPLEGAR</span>
+              </div>
+              <div class="flap-content">
+                <h4>Ejemplos Representativos:</h4>
+                <ul id="ca-ejemplos"></ul>
+                <h4>Importancia Global:</h4>
+                <p id="ca-importancia"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB SOFTWARE PROPIETARIO -->
+        <section id="tab-propietario" class="tab-pane">
+          <div class="lapbook-section-header">
+            <h2>SOFTWARE PROPIETARIO (PRIVATIVO)</h2>
+            <p>Interacción: Haz clic sobre el sobre interactivo para extraer la tarjeta de información.</p>
+          </div>
+
+          <div class="envelope-wrapper">
+            <div id="prop-envelope" class="envelope" onclick="toggleEnvelope()">
+              <div class="envelope-flap"></div>
+              <div class="envelope-pocket">
+                <div class="envelope-label">CARPETA OFICIAL: SOFTWARE PROPIETARIO</div>
+                <span class="click-hint">✉ HAZ CLIC PARA ABRIR Y SACAR LA TARJETA</span>
+              </div>
+              
+              <!-- TARJETA DESPLAZABLE DENTRO/FUERA DEL SOBRE -->
+              <div id="prop-card" class="envelope-card">
+                <div class="card-inner">
+                  <h3>DOCUMENTO TÉCNICO: SOFTWARE PROPIETARIO</h3>
+                  
+                  <div class="grid-2col">
+                    <div>
+                      <h4>Definición</h4>
+                      <p id="pr-definicion"></p>
+                      
+                      <h4>Características</h4>
+                      <ul id="pr-caracteristicas"></ul>
+
+                      <h4>Ventajas</h4>
+                      <ul id="pr-ventajas"></ul>
+                    </div>
+
+                    <div>
+                      <div class="img-slot">
+                        <img src="images/propietario.jpg" data-img-id="propietario" onerror="handleImageError(this, 'SOFTWARE PROPIETARIO')">
+                      </div>
+
+                      <h4>Limitaciones</h4>
+                      <ul id="pr-limitaciones"></ul>
+
+                      <h4>Ejemplos</h4>
+                      <ul id="pr-ejemplos"></ul>
+
+                      <h4>Diferencias con Código Abierto</h4>
+                      <p id="pr-diferencias" class="highlight-text"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB TIPOS DE SOFTWARE (RUEDA GIRATORIA) -->
+        <section id="tab-tipos" class="tab-pane">
+          <div class="lapbook-section-header">
+            <h2>TIPOS DE SOFTWARE Y RUEDA SELECTORA</h2>
+            <p>Interacción: Gira la rueda de cartulina táctil para inspeccionar cada una de las 4 categorías clave.</p>
+          </div>
+
+          <div class="wheel-interactive-container">
+            <!-- RUEDA FISICA DE CARTULINA -->
+            <div class="wheel-box">
+              <div id="paper-wheel" class="paper-wheel">
+                <div class="wheel-segment seg-0" onclick="selectWheelSegment(0)">
+                  <span>SISTEMA</span>
+                </div>
+                <div class="wheel-segment seg-1" onclick="selectWheelSegment(1)">
+                  <span>APLICACIÓN</span>
+                </div>
+                <div class="wheel-segment seg-2" onclick="selectWheelSegment(2)">
+                  <span>DESARROLLO</span>
+                </div>
+                <div class="wheel-segment seg-3" onclick="selectWheelSegment(3)">
+                  <span>SEGURIDAD</span>
+                </div>
+                <div class="wheel-center-pin">
+                  <span>GIRAR</span>
+                </div>
+              </div>
+              <div class="wheel-pointer">▲</div>
+            </div>
+
+            <!-- TARJETA DESPLEGADA SEGÚN LA SELECCIÓN DE LA RUEDA -->
+            <div class="wheel-display-card">
+              <div class="badge-type" id="sw-type-badge">SOFTWARE DE SISTEMA</div>
+              <h3 id="sw-type-name">Software de Sistema</h3>
+              <p id="sw-type-def"></p>
+              
+              <div class="detail-block">
+                <strong>Función Principal:</strong>
+                <p id="sw-type-func"></p>
+              </div>
+
+              <div class="detail-block">
+                <strong>Características:</strong>
+                <ul id="sw-type-chars"></ul>
+              </div>
+
+              <div class="detail-block">
+                <strong>Ejemplos:</strong>
+                <ul id="sw-type-ex"></ul>
+              </div>
+
+              <div class="img-slot">
+                <img id="sw-type-img" src="images/sistema.jpg" data-img-id="sistema" onerror="handleImageError(this, 'IMAGEN DEL TIPO DE SOFTWARE')">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB SEGURIDAD DIGITAL -->
+        <section id="tab-seguridad" class="tab-pane">
+          <div class="lapbook-section-header">
+            <h2>SEGURIDAD DIGITAL</h2>
+            <p>Interacción: Haz clic sobre las 3 tarjetas triples para levantar las solapas de protección.</p>
+          </div>
+
+          <div class="security-flaps-container">
+            <!-- SOLAPA SEGURIDAD 1 -->
+            <div class="sec-card-flip" onclick="this.classList.toggle('flipped')">
+              <div class="sec-front">
+                <span class="sec-icon">🛡️</span>
+                <h3>1. ¿QUÉ ES Y PARA QUÉ SIRVE?</h3>
+                <span class="click-turn">VOLTEAR CARTULINA ➔</span>
+              </div>
+              <div class="sec-back">
+                <p id="sec-que-es"></p>
+                <p id="sec-para-que"></p>
+              </div>
+            </div>
+
+            <!-- SOLAPA SEGURIDAD 2 -->
+            <div class="sec-card-flip" onclick="this.classList.toggle('flipped')">
+              <div class="sec-front">
+                <span class="sec-icon">⚡</span>
+                <h3>2. FUNCIONES Y EJEMPLOS</h3>
+                <span class="click-turn">VOLTEAR CARTULINA ➔</span>
+              </div>
+              <div class="sec-back">
+                <h4>Funciones Principales:</h4>
+                <ul id="sec-funciones"></ul>
+                <h4>Ejemplos:</h4>
+                <ul id="sec-ejemplos"></ul>
+              </div>
+            </div>
+
+            <!-- SOLAPA SEGURIDAD 3 -->
+            <div class="sec-card-flip" onclick="this.classList.toggle('flipped')">
+              <div class="sec-front">
+                <span class="sec-icon">🔑</span>
+                <h3>3. IMPORTANCIA Y PROTECCIÓN</h3>
+                <span class="click-turn">VOLTEAR CARTULINA ➔</span>
+              </div>
+              <div class="sec-back">
+                <p id="sec-importancia"></p>
+                <div class="img-slot">
+                  <img src="images/seguridad.jpg" data-img-id="seguridad" onerror="handleImageError(this, 'SEGURIDAD DIGITAL')">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB LÍNEA DEL TIEMPO EN ACCORDEÓN -->
+        <section id="tab-timeline" class="tab-pane">
+          <div class="lapbook-section-header">
+            <h2>LÍNEA DEL TIEMPO — 10 INVENTOS TECNOLÓGICOS</h2>
+            <p>Interacción: Formato acordeón plegable de cartulina. Haz clic en cada evento para abrir su ficha técnica.</p>
+          </div>
+
+          <div id="accordion-timeline" class="paper-accordion">
+            <!-- SE POPULA DINÁMICAMENTE CON LOS 10 EVENTOS -->
+          </div>
+        </section>
+
+      </div>
+
+      <!-- FUENTES CONSULTADAS / BOLSILLO INFERIOR -->
+      <footer class="lapbook-footer-pocket">
+        <div class="pocket-tab-trigger" onclick="toggleSourcesPocket()">
+          <span>📁 BOLSILLO DE FUENTES CONSULTADAS Y REFERENCIAS</span>
+          <span id="sources-arrow">▲</span>
+        </div>
+        <div id="sources-content" class="sources-drawer hidden">
+          <h4>Bibliografía y Fuentes Académicas:</h4>
+          <ul id="sources-list"></ul>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- SCRIPTS DE DATOS Y LÓGICA INTERACTIVA -->
+  <script src="contenido.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

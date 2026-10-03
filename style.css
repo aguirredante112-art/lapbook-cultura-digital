@@ -1,0 +1,874 @@
+/* ==========================================================================
+   LAPBOOK DIGITAL INTERACTIVO — CULTURA DIGITAL
+   Estilo Visual: F1 / Telemetría / Cartulina Técnica de Computación
+   ========================================================================== */
+
+:root {
+  --bg-dark: #0f1115;
+  --panel-bg: #181b20;
+  --card-paper: #22262e;
+  --card-border: #343b47;
+  --text-main: #e6e8ec;
+  --text-muted: #9aa1b1;
+  --accent-red: #e10600; /* Color de acento F1 */
+  --accent-blue: #00d2be; /* Azul eléctrico / Mercedes-AMG highlight */
+  --metallic-gray: #4a5260;
+  --paper-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 2px 5px rgba(0,0,0,0.3);
+  --font-f1: 'Chakra Petch', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 10px;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(225, 6, 0, 0.05) 0%, transparent 80%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 30px 30px, 30px 30px;
+}
+
+/* --------------------------------------------------------------------------
+   PORTADA OVERLAY
+   -------------------------------------------------------------------------- */
+.cover-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 12, 15, 0.96);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.cover-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9) translateY(-50px);
+}
+
+.cover-card {
+  background: linear-gradient(135deg, #1c2026 0%, #121418 100%);
+  border: 2px solid var(--accent-red);
+  border-radius: 12px;
+  max-width: 700px;
+  width: 100%;
+  padding: 35px;
+  box-shadow: 0 20px 50px rgba(225, 6, 0, 0.25), 0 0 30px rgba(0, 0, 0, 0.8);
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.cover-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--accent-red);
+}
+
+.f1-badge {
+  background-color: var(--accent-red);
+  color: #fff;
+  font-family: var(--font-f1);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  padding: 4px 12px;
+  display: inline-block;
+  margin-bottom: 15px;
+  border-radius: 2px;
+}
+
+.telemetry-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot.red { background-color: var(--accent-red); box-shadow: 0 0 8px var(--accent-red); }
+.dot.gray { background-color: var(--metallic-gray); }
+
+.f1-title {
+  font-family: var(--font-f1);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.f1-subtitle {
+  font-family: var(--font-f1);
+  font-size: 1.1rem;
+  color: var(--accent-blue);
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+.cover-details {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--card-border);
+  padding: 18px;
+  border-radius: 8px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.detail-item {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.detail-item-inline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--card-border);
+  font-size: 0.9rem;
+}
+
+.label {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin-right: 8px;
+}
+
+.value {
+  color: #fff;
+  font-weight: 600;
+}
+
+.value.highlight {
+  color: var(--accent-red);
+  font-size: 1.05rem;
+}
+
+.btn-f1-start {
+  background: linear-gradient(90deg, var(--accent-red) 0%, #b30500 100%);
+  color: #fff;
+  border: none;
+  padding: 16px 32px;
+  font-family: var(--font-f1);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(225, 6, 0, 0.4);
+}
+
+.btn-f1-start:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(225, 6, 0, 0.6);
+  background: linear-gradient(90deg, #ff0700 0%, var(--accent-red) 100%);
+}
+
+/* --------------------------------------------------------------------------
+   ESTRUCTURA DEL LAPBOOK
+   -------------------------------------------------------------------------- */
+.lapbook-viewport {
+  max-width: 1100px;
+  width: 100%;
+}
+
+.lapbook-board {
+  background-color: var(--panel-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: var(--paper-shadow);
+  position: relative;
+}
+
+.lapbook-board.hidden {
+  display: none;
+}
+
+.lapbook-header {
+  border-bottom: 2px solid var(--accent-red);
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.header-branding {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.driver-num {
+  font-family: var(--font-f1);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent-red);
+  background-color: #000;
+  border: 1px solid var(--accent-red);
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.lapbook-header h1 {
+  font-family: var(--font-f1);
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.lapbook-header p {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-blue);
+}
+
+/* TABS DE PESTAÑA / CARTULINA */
+.lapbook-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 15px;
+}
+
+.tab-btn {
+  background-color: var(--card-paper);
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
+  border-bottom: none;
+  padding: 10px 18px;
+  font-family: var(--font-f1);
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tab-btn:hover {
+  background-color: var(--metallic-gray);
+  color: #fff;
+}
+
+.tab-btn.active {
+  background-color: var(--accent-red);
+  color: #fff;
+  border-color: var(--accent-red);
+  box-shadow: 0 -3px 10px rgba(225, 6, 0, 0.3);
+}
+
+/* CONTENIDOS Y SOLAPAS */
+.lapbook-content {
+  background-color: #121418;
+  border: 1px solid var(--card-border);
+  border-radius: 0 8px 8px 8px;
+  padding: 25px;
+  min-height: 480px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lapbook-section-header {
+  margin-bottom: 20px;
+  border-left: 4px solid var(--accent-red);
+  padding-left: 12px;
+}
+
+.lapbook-section-header h2 {
+  font-family: var(--font-f1);
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.lapbook-section-header p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   SLAOTS DE IMÁGENES Y "IMAGEN PENDIENTE"
+   -------------------------------------------------------------------------- */
+.img-slot {
+  width: 100%;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.img-slot img, .cover-image-container img {
+  max-width: 100%;
+  height: auto;
+  max-height: 220px;
+  border-radius: 6px;
+  border: 1px solid var(--card-border);
+  object-fit: cover;
+}
+
+.img-pending-box {
+  background-color: #1a1d24;
+  border: 2px dashed var(--metallic-gray);
+  border-radius: 6px;
+  padding: 20px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 120px;
+}
+
+.img-pending-box .icon {
+  font-size: 1.5rem;
+  color: var(--accent-red);
+}
+
+/* --------------------------------------------------------------------------
+   SOLAPAS DE PAPEL (CÓDIGO ABIERTO)
+   -------------------------------------------------------------------------- */
+.open-source-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.paper-flap {
+  background-color: var(--card-paper);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.paper-flap:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-red);
+}
+
+.flap-cover {
+  background-color: #2a2f3a;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--accent-red);
+}
+
+.flap-cover h3 {
+  font-family: var(--font-f1);
+  font-size: 1rem;
+  color: #fff;
+}
+
+.flap-arrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-blue);
+}
+
+.flap-content {
+  padding: 18px;
+  display: none;
+  background-color: #1a1d24;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.paper-flap.open .flap-content {
+  display: block;
+}
+
+.paper-flap.open .flap-arrow {
+  content: "▲ CERRAR";
+}
+
+/* --------------------------------------------------------------------------
+   SOBRE INTERACTIVO (SOFTWARE PROPIETARIO)
+   -------------------------------------------------------------------------- */
+.envelope-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.envelope {
+  width: 100%;
+  max-width: 750px;
+  background-color: #242832;
+  border: 2px solid var(--card-border);
+  border-radius: 8px;
+  position: relative;
+  box-shadow: var(--paper-shadow);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.envelope-pocket {
+  padding: 25px;
+  text-align: center;
+  background: linear-gradient(180deg, #2a2f3b 0%, #1d2129 100%);
+  border-top: 3px solid var(--accent-red);
+}
+
+.envelope-label {
+  font-family: var(--font-f1);
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.click-hint {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-blue);
+}
+
+.envelope-card {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, padding 0.3s ease;
+  background-color: #15181e;
+  border-top: 1px dashed var(--accent-red);
+}
+
+.envelope.open .envelope-card {
+  max-height: 2000px;
+  padding: 25px;
+}
+
+.card-inner h3 {
+  font-family: var(--font-f1);
+  color: var(--accent-red);
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 8px;
+}
+
+.card-inner h4 {
+  font-size: 0.95rem;
+  color: var(--accent-blue);
+  margin: 12px 0 6px 0;
+}
+
+.card-inner p, .card-inner ul {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.card-inner ul {
+  padding-left: 20px;
+}
+
+.highlight-text {
+  background-color: rgba(225, 6, 0, 0.1);
+  border-left: 3px solid var(--accent-red);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   RUEDA GIRATORIA INTERACTIVA (TIPOS DE SOFTWARE)
+   -------------------------------------------------------------------------- */
+.wheel-interactive-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 25px;
+  align-items: center;
+}
+
+.wheel-box {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.paper-wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    #2a2f3a 0deg 90deg,
+    #1d212a 90deg 180deg,
+    #2a2f3a 180deg 270deg,
+    #1d212a 270deg 360deg
+  );
+  border: 4px solid var(--accent-red);
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  cursor: pointer;
+}
+
+.wheel-segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  left: 50%;
+  transform-origin: 0% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-f1);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+}
+
+.seg-0 { transform: rotate(0deg); }
+.seg-1 { transform: rotate(90deg); }
+.seg-2 { transform: rotate(180deg); }
+.seg-3 { transform: rotate(270deg); }
+
+.wheel-segment span {
+  transform: rotate(45deg);
+  display: block;
+}
+
+.wheel-center-pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background-color: var(--accent-red);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-f1);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  pointer-events: none;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--accent-red);
+  font-size: 1.8rem;
+  text-shadow: 0 2px 5px #000;
+  z-index: 10;
+}
+
+.wheel-display-card {
+  background-color: var(--card-paper);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.badge-type {
+  background-color: var(--accent-blue);
+  color: #000;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  display: inline-block;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.wheel-display-card h3 {
+  font-family: var(--font-f1);
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.detail-block {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+.detail-block ul {
+  padding-left: 20px;
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   SEGURIDAD DIGITAL (TARJETAS TRIPLES FLIP)
+   -------------------------------------------------------------------------- */
+.security-flaps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.sec-card-flip {
+  background-color: var(--card-paper);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  min-height: 280px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.sec-card-flip:hover {
+  border-color: var(--accent-blue);
+  transform: translateY(-4px);
+}
+
+.sec-card-flip.flipped {
+  background-color: #1a1e27;
+  border-color: var(--accent-red);
+}
+
+.sec-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.sec-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.sec-front h3 {
+  font-family: var(--font-f1);
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.click-turn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-red);
+}
+
+.sec-back {
+  display: none;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.sec-card-flip.flipped .sec-front {
+  display: none;
+}
+
+.sec-card-flip.flipped .sec-back {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   LÍNEA DEL TIEMPO EN ACCORDEÓN PLEGABLE DE PAPEL
+   -------------------------------------------------------------------------- */
+.paper-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.acc-item {
+  background-color: var(--card-paper);
+  border: 1px solid var(--card-border);
+  border-left: 4px solid var(--metallic-gray);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.acc-item.active {
+  border-left-color: var(--accent-red);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.acc-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: #1f232b;
+}
+
+.acc-header:hover {
+  background-color: #262b35;
+}
+
+.acc-year {
+  font-family: var(--font-f1);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-red);
+  min-width: 70px;
+}
+
+.acc-title {
+  font-family: var(--font-f1);
+  font-size: 1rem;
+  color: #fff;
+  flex-grow: 1;
+  padding: 0 15px;
+}
+
+.acc-toggle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-blue);
+}
+
+.acc-body {
+  display: none;
+  padding: 20px;
+  background-color: #16181f;
+  border-top: 1px solid var(--card-border);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.acc-item.active .acc-body {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   BOLSILLO INFERIOR / FUENTES
+   -------------------------------------------------------------------------- */
+.lapbook-footer-pocket {
+  margin-top: 25px;
+  background-color: #181b22;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pocket-tab-trigger {
+  padding: 12px 20px;
+  background-color: #222630;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-family: var(--font-f1);
+  font-size: 0.88rem;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--accent-red);
+}
+
+.sources-drawer {
+  padding: 20px;
+  background-color: #121419;
+}
+
+.sources-drawer.hidden {
+  display: none;
+}
+
+.sources-drawer ul {
+  padding-left: 20px;
+  margin-top: 10px;
+  font-size: 0.88rem;
+}
+
+.sources-drawer a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.sources-drawer a:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (MÓVIL Y TABLET)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .wheel-interactive-container {
+    grid-template-columns: 1fr;
+  }
+
+  .lapbook-tabs {
+    flex-direction: column;
+  }
+
+  .tab-btn {
+    border-radius: 4px;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
